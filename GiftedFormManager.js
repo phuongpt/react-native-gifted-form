@@ -49,11 +49,13 @@ function doValidateOne(k = '', value = undefined, validators = {}) {
         if (typeof clonedArgs[0] === 'string') {
           clonedArgs[0] = clonedArgs[0].trim();
         }
-      }
-
-      isValid = true;
-      if(value && value.length > 0){
         isValid = validatorjs[validate[i].validator].apply(null, clonedArgs);
+      }else{
+        if(value && value.length > 0){
+          isValid = validatorjs[validate[i].validator].apply(null, clonedArgs);
+        } else{
+          isValid = true;
+        }
       }
 
       result.push({
