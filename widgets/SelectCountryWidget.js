@@ -1961,7 +1961,7 @@ module.exports = React.createClass({
           initialListSize={10}
           pageSize={10}
 
-          keyboardShouldPersistTaps={always}
+          keyboardShouldPersistTaps="always"
           keyboardDismissMode="on-drag"
 
           renderSeparator={this.renderSeparator}

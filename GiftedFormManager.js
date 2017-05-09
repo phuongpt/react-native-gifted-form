@@ -51,7 +51,10 @@ function doValidateOne(k = '', value = undefined, validators = {}) {
         }
       }
 
-      isValid = validatorjs[validate[i].validator].apply(null, clonedArgs);
+      isValid = true;
+      if(value && value.length > 0){
+        isValid = validatorjs[validate[i].validator].apply(null, clonedArgs);
+      }
 
       result.push({
         validator: validate[i].validator,
