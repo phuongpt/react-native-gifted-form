@@ -259,6 +259,32 @@ module.exports = React.createClass({
   },
 
   render() {
+    if (this.props.inline === false) {
+      return (
+        <TouchableHighlight
+          onPress={() => {
+          this.requestAnimationFrame(() => {
+            this.onPress();
+          });
+        }}
+          underlayColor={this.getStyle('underlayColor').pop()}
+
+          {...this.props} // mainly for underlayColor
+
+          >
+          <View style={this.getStyle(['rowContainer'])}>
+            <View style={this.getStyle(['titleContainer'])}>
+              {this._renderImage()}
+              <Text numberOfLines={1} style={this.getStyle(['modalTitle'])}>{this.props.title}</Text>
+              {this.renderDisclosure()}
+            </View>
+            <Text numberOfLines={1} style={this.getStyle('modalValue')}>{this.state.value}</Text>
+
+          </View>
+        </TouchableHighlight>
+
+      )
+    }
     return (
       <TouchableHighlight
         onPress={() => {
@@ -274,9 +300,9 @@ module.exports = React.createClass({
       >
         <View style={this.getStyle('row')}>
           {this._renderImage()}
-          <Text numberOfLines={1} style={this.getStyle('modalTitle')}>{this.props.title}</Text>
+          <Text numberOfLines={1} style={this.getStyle('modalTitleInline')}>{this.props.title}</Text>
           <View style={this.getStyle('alignRight')}>
-            <Text numberOfLines={1} style={this.getStyle('modalValue')}>{this.state.value}</Text>
+            <Text numberOfLines={1} style={this.getStyle('modalValueInline')}>{this.state.value}</Text>
           </View>
           {this.renderDisclosure()}
         </View>
@@ -301,13 +327,18 @@ module.exports = React.createClass({
       height: 44,
       alignItems: 'center',
     },
+    titleContainer: {
+      paddingTop: 10,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
     disclosure: {
       // transform: [{rotate: '90deg'}],
       marginLeft: 10,
       marginRight: 10,
       width: 11,
     },
-    modalTitle: {
+    modalTitleInline: {
       flex: 1,
       fontSize: 15,
       color: '#000',
@@ -317,9 +348,22 @@ module.exports = React.createClass({
       alignItems: 'flex-end',
       // width: 110,
     },
-    modalValue: {
+    modalValueInline: {
       fontSize: 15,
       color: '#c7c7cc',
+    },
+    modalTitle: {
+      fontSize: 13,
+      color: '#333',
+      paddingLeft: 10,
+      flex: 1
+    },
+    modalValue: {
+      fontSize: 15,
+      flex: 1,
+      height: 30,
+      marginLeft: 40,
+      marginTop: 10
     },
   },
 });

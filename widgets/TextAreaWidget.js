@@ -19,13 +19,14 @@ module.exports = React.createClass({
   
   render() {
     return (
-      <View style={this.getStyle('textAreaRow')}>
+      <View style={[this.getStyle('textAreaRow'), this.props.style]}>
         <TextInput
           style={this.getStyle('textArea')}
           multiline={true}
 
           {...this.props}
           
+          textAlignVertical='top'
           onFocus={() => this.props.onFocus(true)}
           onChangeText={this._onChange}
           value={this.state.value}
@@ -40,7 +41,6 @@ module.exports = React.createClass({
       height: 120,
       borderBottomWidth: 1 / PixelRatio.get(),
       borderColor: '#c8c7cc',
-      alignItems: 'center',
       paddingLeft: 10,
       paddingRight: 10,
     },

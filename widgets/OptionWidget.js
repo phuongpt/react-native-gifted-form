@@ -21,6 +21,13 @@ module.exports = React.createClass({
     });
   },
   
+
+  componentDidMount(){
+    if(this.props.selected){
+      this._onChange(true)
+    }
+  },
+
   _renderCheckmark() {
     if (this.state.value === true) {
       return (
@@ -48,7 +55,12 @@ module.exports = React.createClass({
         this.props.onClose(this.props.title, this.props.navigator);
       }
     } else {
-      this._onChange(!this.state.value)
+      if(this.state.value !== true && this.state.value !== false){
+        this._onChange(true)
+
+      }else{
+        this._onChange(!this.state.value)
+      }
     }
   },
   
