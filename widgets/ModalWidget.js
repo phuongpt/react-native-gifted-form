@@ -234,8 +234,11 @@ module.exports = React.createClass({
                   return this.props.transformValue(values[this.props.displayValue]);
                 } else {
                   if (Array.isArray(values[this.props.displayValue])) {
-                    // @todo
-                    // should return the title and not the value in case of select menu
+                    if(this.props.data){
+                      return values[this.props.displayValue].map((key)=>{
+                        return this.props.data.find((itm)=>itm.key === key).title;
+                      }).join(', ');
+                    }
                     return values[this.props.displayValue].join(', ');
                   } else if (values[this.props.displayValue] instanceof Date) {
                     return moment(values[this.props.displayValue]).calendar(null, {
@@ -246,7 +249,7 @@ module.exports = React.createClass({
                       lastWeek: '[Last] dddd'
                     });
                   } else {
-                    return values[this.props.displayValue];
+                    return this.props.data ? this.props.data.find((item)=>item.key === values[this.props.displayValue]).title : values[this.props.displayValue] ;
                   }
                 }
               }
