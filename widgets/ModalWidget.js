@@ -236,7 +236,8 @@ module.exports = React.createClass({
                   if (Array.isArray(values[this.props.displayValue])) {
                     if(this.props.data){
                       return values[this.props.displayValue].map((key)=>{
-                        return this.props.data.find((itm)=>itm.key === key).title;
+                        let selectedItem = this.props.data.find((item)=>item.key === key);
+                        return selectedItem && selectedItem.title;
                       }).join(', ');
                     }
                     return values[this.props.displayValue].join(', ');
@@ -249,7 +250,11 @@ module.exports = React.createClass({
                       lastWeek: '[Last] dddd'
                     });
                   } else {
-                    return this.props.data ? this.props.data.find((item)=>item.key === values[this.props.displayValue]).title : values[this.props.displayValue] ;
+                    if(this.props.data){
+                      let selectedValue = this.props.data.find((item)=> item.key === values[this.props.displayValue]);
+                      return selectedValue && selectedValue.title;
+                    }
+                    return values[this.props.displayValue] ;
                   }
                 }
               }
