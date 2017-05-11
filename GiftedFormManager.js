@@ -28,9 +28,13 @@ function doValidateOne(k = '', value = undefined, validators = {}) {
       return val !== undefined ? val : '';
     });
 
+    var isNot = validate[i].isNot || false
+
     if (typeof validate[i].validator === 'function') {
       isValid = validate[i].validator.apply(null, clonedArgs);
-
+      if(isNot){
+        isValid = !isValid;
+      }
       // handle custom validators
       result.push({
         validator: 'Custom',
@@ -56,6 +60,10 @@ function doValidateOne(k = '', value = undefined, validators = {}) {
         } else{
           isValid = true;
         }
+      }
+
+      if(isNot){
+        isValid = !isValid;
       }
 
       result.push({
