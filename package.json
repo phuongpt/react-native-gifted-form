@@ -28,8 +28,8 @@
     "moment": "^2.14.1",
     "react-native-button": "^1.6.0",
     "react-native-gifted-spinner": "^0.0.5",
-    "react-native-google-places-autocomplete": "^1.2.0",
+    "react-native-google-places-autocomplete": "^1.2.12",
     "react-timer-mixin": "^0.13.3",
-    "validator": "^5.4.0"
+    "validator": "^7.0.0"
   }
 }
