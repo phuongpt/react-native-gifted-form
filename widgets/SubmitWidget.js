@@ -1,4 +1,6 @@
-var React = require('react');
+import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 
 
 var {View, Text} = require('react-native')
@@ -11,7 +13,7 @@ var GiftedFormManager = require('../GiftedFormManager');
 
 
 // @todo to test with validations
-module.exports = React.createClass({
+module.exports = createReactClass({
   mixins: [WidgetMixin],
 
   getDefaultProps() {
@@ -27,40 +29,18 @@ module.exports = React.createClass({
   },
 
   propTypes: {
-    onSubmit: React.PropTypes.func,
-    preSubmit: React.PropTypes.func,
-    isDisabled: React.PropTypes.bool,
-    activityIndicatorColor: React.PropTypes.string,
-    requiredMessage: React.PropTypes.string,
-    notValidMessage: React.PropTypes.string,
+    onSubmit: PropTypes.func,
+    preSubmit: PropTypes.func,
+    isDisabled: PropTypes.bool,
+    activityIndicatorColor: PropTypes.string,
+    requiredMessage: PropTypes.string,
+    notValidMessage: PropTypes.string,
   },
 
   getInitialState() {
     return {
       isLoading: false,
     };
-  },
-
-  onValidationError(validated) {
-    var errors = [];
-    if (validated.isValid === false) {
-      for (var k in validated.results) {
-        if (validated.results.hasOwnProperty(k)) {
-          for (var j in validated.results[k]) {
-            if (validated.results[k].hasOwnProperty(j)) {
-              if (validated.results[k][j].isValid === false) {
-                let defaultMessage = !!validated.results[k][j].value ? this.props.notValidMessage : this.props.requiredMessage;
-                errors.push(validated.results[k][j].message || defaultMessage.replace('{TITLE}', validated.results[k][j].title));
-                // displaying only 1 error per widget
-                break;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    this.props.form.setState({errors});
   },
 
   clearValidationErrors() {
@@ -89,7 +69,12 @@ module.exports = React.createClass({
       });
       this.props.onSubmit(true, values, validationResults, this._postSubmit, this.props.navigator);
     } else {
-      this.onValidationError(validationResults);
+      var errors = GiftedFormManager.getValidationErrors(
+        validationResults,
+        this.props.notValidMessage,
+        this.props.requiredMesage
+      );
+      this.props.form.setState({errors: errors});
       this.props.onSubmit(false, values, validationResults, this._postSubmit, this.props.navigator);
     }
   },
