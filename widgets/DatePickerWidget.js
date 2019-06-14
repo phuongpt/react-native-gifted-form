@@ -1,4 +1,5 @@
 var React = require('react');
+import createReactClass from 'create-react-class';
 var {
   View,
   DatePickerIOS,
@@ -9,7 +10,7 @@ var {
 
 var WidgetMixin = require('../mixins/WidgetMixin.js');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
   mixins: [WidgetMixin],
 
   getDefaultProps() {

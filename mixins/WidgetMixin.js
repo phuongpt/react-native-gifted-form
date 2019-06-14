@@ -219,7 +219,7 @@ module.exports = {
       return (
         <Image
           style={this.getStyle('rowImage')}
-          resizeMode={Image.resizeMode.contain}
+          resizeMode={"contain"}
           source={imageSrc}
         />
       );
@@ -229,7 +229,7 @@ module.exports = {
       return (
         <Image
           style={this.getStyle('rowImage')}
-          resizeMode={Image.resizeMode.contain}
+          resizeMode={"contain"}
           source={imageSrc}
         />
       );
@@ -241,7 +241,7 @@ module.exports = {
       return (
         <Image
           style={this.getStyle('rowImage')}
-          resizeMode={Image.resizeMode.contain}
+          resizeMode={"contain"}
           source={this.props.image}
         />
       );
@@ -250,7 +250,7 @@ module.exports = {
       return (
         <Image
           style={this.getStyle('rowImage')}
-          resizeMode={Image.resizeMode.contain}
+          resizeMode={"contain"}
           source={imageSrc}
         />
       );

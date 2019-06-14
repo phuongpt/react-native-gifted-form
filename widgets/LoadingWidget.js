@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableHighlight,
-  Image,
   PixelRatio
 } from 'react-native';
 
