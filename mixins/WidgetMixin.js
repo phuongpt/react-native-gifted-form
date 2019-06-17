@@ -160,8 +160,8 @@ module.exports = {
   _renderValidationError() {
     let hasValue = typeof this.state.value !== 'undefined' && this.state.value !== '';
 
-    if (this.props.validateOnEmpty) {
-      hasValue = true;
+    if (this.props.validateOnEmpty && !hasValue) {
+      return null;
     }
 
     if (!hasValue) {
@@ -204,8 +204,15 @@ module.exports = {
 
     let hasValue = typeof this.state.value !== 'undefined' && this.state.value !== '';
 
-    if (this.props.validateOnEmpty) {
-      hasValue = true;
+    if (this.props.validateOnEmpty && !hasValue) {
+      const imageSrc = require('../icons/check.png');
+      return (
+        <Image
+          style={this.getStyle('rowImage')}
+          resizeMode={"contain"}
+          source={imageSrc}
+        />
+      );
     }
 
     const hasValidationErrors = this.state.validationErrorMessage !== null;
