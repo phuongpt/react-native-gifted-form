@@ -195,7 +195,9 @@ module.exports = createReactClass({
       navigator.pop();
     }
 
-    this.props.onClose && this.props.onClose();
+    setTimeout(()=>{
+      this.props.onClose && this.props.onClose(this.state.value);
+    }, 100)
   },
 
   refreshDisplayableValue() {
