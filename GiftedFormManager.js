@@ -59,7 +59,9 @@ function doValidateOne(k = '', value = undefined, validators = {}) {
       }
 
       isValid = validatorjs[validate[i].validator].apply(null, clonedArgs);
-
+      if(validate[i].canEmpty && !value){
+        isValid = true;
+      }
       result.push({
         validator: validate[i].validator,
         isValid,
@@ -205,7 +207,6 @@ class Manager {
     }
 
     var results = {};
-
     for (let k in validators) {
       if (validators.hasOwnProperty(k)) {
         results[k] = doValidateOne(k, values[k], validators[k]);
