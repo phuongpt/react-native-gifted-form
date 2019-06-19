@@ -214,13 +214,7 @@ module.exports = createReactClass({
             if (typeof this.props.transformValue === 'function') {
               return this.props.transformValue(GiftedFormManager.stores[this.props.formName].values[this.props.displayValue]);
             } else if (GiftedFormManager.stores[this.props.formName].values[this.props.displayValue] instanceof Date) {
-              return moment(GiftedFormManager.stores[this.props.formName].values[this.props.displayValue]).calendar(null, {
-                sameDay: '[Today]',
-                nextDay: '[Tomorrow]',
-                nextWeek: 'dddd',
-                lastDay: '[Yesterday]',
-                lastWeek: '[Last] dddd'
-              });
+              return moment(GiftedFormManager.stores[this.props.formName].values[this.props.displayValue]).format("MM/DD/YYYY");
             }
             if (typeof GiftedFormManager.stores[this.props.formName].values[this.props.displayValue] === 'string') {
               return GiftedFormManager.stores[this.props.formName].values[this.props.displayValue].trim();
