@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 
 var GiftedFormManager = require('../GiftedFormManager');
@@ -181,6 +181,10 @@ module.exports = {
         message={this.state.validationErrorMessage}
       />
     );
+  },
+
+  _renderRightButton(){
+    return <View style={{position: "absolute", top: 10, right: 10}}>{this.props.rightButton && this.props.rightButton()}</View>
   },
 
   _renderImage() {

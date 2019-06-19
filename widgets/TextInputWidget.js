@@ -71,6 +71,7 @@ module.exports = createReactClass({
           />
           {this._renderValidationError()}
           {this._renderUnderline()}
+          {this._renderRightButton()}
         </View>
       );
     } 
@@ -94,6 +95,7 @@ module.exports = createReactClass({
         </View>
         {this._renderValidationError()}
         {this._renderUnderline()}
+        {this._renderRightButton()}
       </View>
     );
 
