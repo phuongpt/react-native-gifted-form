@@ -137,6 +137,7 @@ module.exports = createReactClass({
               style={{
                 width: 21,
                 marginRight: 10,
+                marginTop: 5,
                 tintColor: '#097881',
               }}
               resizeMode={"contain"}

@@ -30,12 +30,12 @@ module.exports = createReactClass({
     try {
       const {action, year, month, day} = await DatePickerAndroid.open(options);
       if (action === DatePickerAndroid.dismissedAction) {
-        this.props.onDone()
+        this.props.onDone && this.props.onDone()
       } else {
         var date = new Date(year, month, day);
         this._onChange(date);
         this.props.onClose(date, this.props.navigator);
-        this.props.onDone()
+        this.props.onDone && this.props.onDone()
       }
     } catch ({code, message}) {
     }
