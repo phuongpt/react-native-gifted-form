@@ -225,7 +225,7 @@ module.exports = {
     const shouldShowValidationImage = this.props.validationImage === true;
 
     if(!hasValue && !hasImageProp && !isOptionWidget && shouldShowValidationImage && toValidate){
-      const imageSrc = require('../icons/info.png');
+      const imageSrc = require('../icons/invalid.png');
 
       return (
         <Image
