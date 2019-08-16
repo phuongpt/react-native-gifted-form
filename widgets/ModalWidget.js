@@ -220,6 +220,15 @@ module.exports = createReactClass({
             if (typeof GiftedFormManager.stores[this.props.formName].values[this.props.displayValue] === 'string') {
               return GiftedFormManager.stores[this.props.formName].values[this.props.displayValue].trim();
             }
+            if (Array.isArray(GiftedFormManager.stores[this.props.formName].values[this.props.displayValue])) {
+              if(this.props.data){
+                return GiftedFormManager.stores[this.props.formName].values[this.props.displayValue].map((key)=>{
+                  let selectedItem = this.props.data.find((item)=>item.key === key);
+                  return selectedItem && selectedItem.title;
+                }).join(', ');
+              }
+              return GiftedFormManager.stores[this.props.formName].values[this.props.displayValue].join(', ');
+            }
           } else {
             // @todo merge with when not select menu
 
