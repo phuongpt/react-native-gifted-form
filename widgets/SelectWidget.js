@@ -42,10 +42,12 @@ module.exports = createReactClass({
       return;
     }
 
-    const results = (this.props.children || []).filter(child=>{
-  	 	var val = child.props.title;
-  	 	return val.toLowerCase().indexOf(text.trim().toLowerCase()) > -1;
-  	});
+    const results = (this.props.children || []).map(child=>{
+      var val = child.props.title;
+      const hide = val.toLowerCase().indexOf(text.trim().toLowerCase()) === -1;
+      const props = Object.assign({}, child.props, {hide});
+      return Object.assign({}, child, {props});
+    });
     this.setState({
       childrens: results
     });
@@ -105,7 +107,7 @@ module.exports = createReactClass({
 
     return (
       <View>
-      	{!!this.props.enableSearch && this.renderHeader()}
+        {!!this.props.enableSearch && this.renderHeader()}
         {this._childrenWithProps}
       </View>
     );

@@ -66,8 +66,9 @@ module.exports = createReactClass({
   },
   
   render() {
+    const hideStyle = this.props.hide ? {height: 0, width: 0, opacity: 0, borderBottomWidth: 0} : {};
     return (
-      <View style={this.getStyle('rowContainer')}>
+      <View style={[this.getStyle('rowContainer'), hideStyle]}>
         <TouchableHighlight
           onPress={this._onClose}
           underlayColor={this.getStyle('underlayColor').pop()}
